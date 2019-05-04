@@ -10,8 +10,8 @@ PCB files include stm32f407 eval board that you can use in this project
 
 you can use this project for modbus tcp 
 
-if you have any question you can cantact me 
+if you have any question you can contact me
 
 
-y
+
 alireza.roozitalab@gmail.com
