@@ -1,4 +1,4 @@
-# stm32_low_level_eth
+# stm32 low leve ethernet source
 hi this is very low level eth stack for stm32f407
 this stack suport tcp , icmp , arp packets
 with check some calclation metod 
