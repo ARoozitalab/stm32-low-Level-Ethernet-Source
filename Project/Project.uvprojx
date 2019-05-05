@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F4XX, USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\User;..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\Libraries\CMSIS\Include;..\Libraries\CMSIS\Device\ST\STM32F4xx\Include</IncludePath>
+              <IncludePath>..\src;..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\Libraries\CMSIS\Include;..\Libraries\CMSIS\Device\ST\STM32F4xx\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -384,22 +384,22 @@
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\main.c</FilePath>
+              <FilePath>..\src\main.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_it.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\stm32f4xx_it.c</FilePath>
+              <FilePath>..\src\stm32f4xx_it.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4x7_eth_bsp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\stm32f4x7_eth_bsp.c</FilePath>
+              <FilePath>..\src\stm32f4x7_eth_bsp.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4x7_eth.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\stm32f4x7_eth.c</FilePath>
+              <FilePath>..\src\stm32f4x7_eth.c</FilePath>
             </File>
           </Files>
         </Group>

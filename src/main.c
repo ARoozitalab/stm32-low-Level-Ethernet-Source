@@ -32,7 +32,7 @@ uint8_t uip_buf2[1000]={0};
 extern __IO ETH_DMADESCTypeDef  *DMATxDescToSet;
 extern __IO ETH_DMADESCTypeDef  *DMARxDescToGet;
   __IO ETH_DMADESCTypeDef *DMARxNextDesc;
-FrameTypeDef ali;
+FrameTypeDef pbuf;
 uint16_t ident=0;
 #define MAC0   2
 #define MAC1   0
@@ -51,7 +51,7 @@ uint16_t ident=0;
 #define TYPE_ICMP 0x0800
 #define ICMP_PROTOCOL  0x01
 #define TCP_PROTOCOL  0x06
-
+//  header checksum
 void headercheksumn()
 {
 int i=0;
@@ -75,14 +75,14 @@ data[25]=	(checksum&0xff);
 }
 
 
-
+// all checksums expect header checksum
 void normcheksumn()
 {
 int i=0;
 	uint32_t checksum=0;
 	uint16_t data1=0;
 	checksum=(data[34]<<8)|data[35];
-	for(i=36;i<ali.length;i=i+2)
+	for(i=36;i<pbuf.length;i=i+2)
 	{
 		data1=(data[i]<<8)|data[i+1];
 	checksum=checksum+data1;
@@ -101,7 +101,7 @@ data[37]=	(checksum&0xff);
 
 
 
-
+/////arp protocol response code
 
 void arp_send(void)
 {
@@ -177,7 +177,7 @@ uip_buf[41]=0;
 
 
 
-
+/////icmp protocol response code
 void icmp_send()
 {
 	char i;
@@ -274,7 +274,7 @@ normcheksumn();
 }
 
 
-
+/////tcp and modbustcp protocol response code
 
 void tcp_send(void)
 {
@@ -437,9 +437,9 @@ int main(void)
 		
    if (ETH_CheckFrameReceived())
     {
-			ali=ETH_Get_Received_Frame();
-			uip_buf=(u8 *)ali.buffer;
-			 memcpy(uip_buf2,uip_buf,ali.length);
+			pbuf=ETH_Get_Received_Frame();
+			uip_buf=(u8 *)pbuf.buffer;
+			 memcpy(uip_buf2,uip_buf,pbuf.length);
 			 
 	if((uip_buf[0]==0xff)&(uip_buf[1]==0xff)&(uip_buf[2]==0xff)&(uip_buf[3]==0xff)&
 	(uip_buf[4]==0xff)&(uip_buf[5]==0xff)&(uip_buf[38]==IP0)&(uip_buf[39]==IP1)&&
@@ -459,7 +459,7 @@ int main(void)
   }
   else
   {
-    DMARxNextDesc = ali.descriptor;
+    DMARxNextDesc = pbuf.descriptor;
   }
   
   /* Set Own bit in Rx descriptors: gives the buffers back to DMA */
